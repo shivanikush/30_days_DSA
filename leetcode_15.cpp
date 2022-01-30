@@ -38,7 +38,41 @@ public:
     }
 };
 
+//another solution of mine which worked 
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        sort(nums.begin(), nums.end());
+        int i = 0;
+        int j,k;
+        int n = nums.size();
+        vector<vector<int>> res;
+        while(i<n-1){
+            //if( i=0 && nums[i] == nums[i+1]) continue;
+            int a = nums[i];
 
+		// we have seen this number & combo before; skip
+		    
+            j = i+1;
+            k = n-1;
+            while(j<k){
+                
+                int b = nums[j];
+                int c = nums[k];
+                int curr_sum = a+b+c;
+                if(curr_sum == 0) res.push_back({a,b,c});
+                    
+                if(curr_sum <= 0) while (nums[j] == b && j < k) j++;
+    
+                if(curr_sum >= 0) while (nums[k] == c && j< k) k--;
+            }
+            while (nums[i] == a && i < n-1) i++;
+        }
+        return res;
+        
+    }
+};
 
 
 
